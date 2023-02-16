@@ -1,7 +1,7 @@
 # Arduino_traffic_light
 基于Arduino的多功能智能交通信号灯的设计与实现
 
-'''  博客链接 🔗： https://blog.csdn.net/m0_51398353/article/details/127270507?spm=1001.2014.3001.5501 '''
+>博客链接 🔗： https://blog.csdn.net/m0_51398353/article/details/127270507?spm=1001.2014.3001.5501 
 
 >对盲人语音播报，红灯结束时铃声提醒，信号灯倒计时和闯红灯语音劝阻
 
