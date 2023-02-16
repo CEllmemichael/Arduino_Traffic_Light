@@ -4,9 +4,9 @@
 
 
 
->博客链接 🔗： https://blog.csdn.net/m0_51398353/article/details/127270507?spm=1001.2014.3001.5501 
+>博客链接 🔗： https://blog.csdn.net/m0_51398353/article/details/127270507
 
-> 效果视频  🔗：  https://www.bilibili.com/video/BV1gE411g715/?spm_id_from=333.999.0.0
+> 效果视频  🔗：  https://www.bilibili.com/video/BV1gE411g715
 
 # 1．系统设计思路
 
@@ -63,8 +63,9 @@ A3，A4为按键接口
                                                 图3 显示管端口连接图
 
 
-3．系统软件实现
+# 3．系统软件实现
 1.基本函数解释
+```c
 Reset:程序无论到了哪一步都恢复到开始程序的那一步
 PinMode:定义输入输出
 pinMode(13,OUTPUT):13端口是输出端口；
@@ -75,21 +76,32 @@ Digitalwrite:控制高低电平
 Delay{毫秒}
 Digitalread读取电平
 Eg:IntX=digitalread(2)
+```
+
+
 模拟信号的实质就是电压，arduino的模拟端口可以采集0-5V的电压，并且按比例以1-1023表示，机5V=1023；
 模拟信号的传感器也是以电压形式传输信号的，
 模拟电路的输入函数analogRead(0);
+
 2.语音信号实现
 使盲人在无法看到信号灯使一样可以通过路口
+
 使用for循环嵌套语音输出倒计时和红路灯常亮
+```c
 for (int x = 0; x < 60; x++) //循环60次，统计60次音符播放时间为6秒
   { digitalWrite(g, 0);使红灯常亮
     int a = 5 - (x / 10);
     deal(dofly_DuanMa[a]);通过函数实现倒计时数值与for循环和时间的关系
     tone(tonePin, tune[x]); //依次播放tune数组元素，即每个音符
 delay(100 * duration[x]); //每个音符持续的时间，即节拍duration，    noTone(tonePin);//停止当前音符，进入下一音符
+```
+
+
 3. 路灯将结束时提示铃声
 使行人在信号灯快结束时有意识地加快步伐预防交通事故
 在闪烁循环中插入蜂鸣函数使其延迟时间和灯光延迟时间之和与for循环变量的乘积等于闪烁时长
+
+```c
 for (int i = 0; i < 6; i++)
   { digitalWrite(g, 1);
     delay(125);
@@ -100,8 +112,14 @@ for (int i = 0; i < 6; i++)
     digitalWrite(tonePin, 0);
     delay(125);
   }
+```
+
+
+
 # 4. 声波测距提示不要闯红灯
 初始声波发出器接受器并通过函数换算成厘米单位
+
+```c
 digitalWrite(trigPin, LOW);
   delay(2);
   digitalWrite(trigPin, HIGH);
@@ -113,7 +131,11 @@ if (distanceCm <= 50)当测距小于50厘米时实现该程序
     {
       digitalWrite(LED, LOW);
     }
+```
+
 # 5.铃声播放
+
+```c
 //对应音符和频率值
 #define NOTE_D0 -1
 #define NOTE_D1 294
@@ -186,8 +208,7 @@ for (int x = 0; x < 60; x++) //循环音符的次数
     tone(tonePin, tune[x]); //依次播放tune数组元素，即每个音符
     delay(100 * duration[x]); //每个音符持续的时间，即节拍duration，400是调整时间的越大，曲子速度越慢，越小曲子速度越快
     noTone(tonePin);//停止当前音符，进入下一音符
- 
-
+```
 
 # 6．参考文献
 
